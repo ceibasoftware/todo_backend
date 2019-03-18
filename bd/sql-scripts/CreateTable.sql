@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS tasks (
+    task_id INT AUTO_INCREMENT,
+	user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    done BOOLEAN NOT NULL,
+	category VARCHAR(255),
+    PRIMARY KEY (task_id)
+)  ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS users (
+    user_id INT AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+	user_name VARCHAR(50) NOT NULL,
+    PRIMARY KEY (user_id)
+)  ENGINE=INNODB;
