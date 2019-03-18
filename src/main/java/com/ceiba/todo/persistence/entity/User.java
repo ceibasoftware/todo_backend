@@ -6,7 +6,7 @@ public class User {
 	@Id
     private Integer userId;
 	private String name;
-    private String userNsame;
+    private String userName;
 
 	public Integer getUserId() {
 		return userId;
@@ -24,12 +24,12 @@ public class User {
 		this.name = name;
 	}
 
-	public String getUserNsame() {
-		return userNsame;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUserNsame(String userNsame) {
-		this.userNsame = userNsame;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
     
 }

@@ -10,6 +10,8 @@ public class Task {
 	private Integer taskId;
 	private String title;
 	private Integer userId;
+	private Boolean done = Boolean.FALSE;
+	private String category;
 
 	public Integer getUserId() {
 		return userId;
@@ -18,9 +20,6 @@ public class Task {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-
-	private Boolean done = Boolean.FALSE;
-	private String category;
 
 	public Integer getTaskId() {
 		return taskId;
