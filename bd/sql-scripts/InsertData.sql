@@ -1,6 +1,7 @@
 INSERT INTO users (name, user_name) VALUES ('German A', 'german.arroyave');
-INSERT INTO tasks (user_id, title, done,	category) VALUES (1, 'Hacer backend', false, 'IT');
-INSERT INTO tasks (user_id, title, done,	category) VALUES (1, 'Hacer frontend', false, 'IT');
-INSERT INTO tasks (user_id, title, done,	category) VALUES (1, 'Hacer docker Mysql', true, 'IT');
+INSERT INTO lists (user_id, name, description) VALUES (1, 'Others', 'General activities');
+INSERT INTO tasks (title, done, list_id) VALUES ('Hacer backend', false, 1);
+INSERT INTO tasks (title, done, list_id) VALUES ('Hacer frontend', false, 1);
+INSERT INTO tasks (title, done, list_id) VALUES ('Hacer docker Mysql', true, 1);
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%'; 

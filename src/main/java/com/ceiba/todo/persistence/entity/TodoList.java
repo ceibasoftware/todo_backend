@@ -4,37 +4,40 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.lang.NonNull;
 
-@Table("users")
-public class User {
+@Table("lists")
+public class TodoList {
 	@Id
-    private Integer userId;
+    private Integer listId;
+	@NonNull
+	private Integer userId;
 	@NonNull
 	private String name;
-	@NonNull
-    private String userName;
-
+    private String description;
+    
+	public Integer getListId() {
+		return listId;
+	}
+	public void setListId(Integer listId) {
+		this.listId = listId;
+	}
 	public Integer getUserId() {
 		return userId;
 	}
-
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getUserName() {
-		return userName;
+	public String getDescription() {
+		return description;
 	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setDescription(String description) {
+		this.description = description;
 	}
+    
     
 }

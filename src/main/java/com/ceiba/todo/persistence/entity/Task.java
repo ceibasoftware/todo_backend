@@ -2,24 +2,19 @@ package com.ceiba.todo.persistence.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.lang.NonNull;
 
 @Table("tasks")
 public class Task {
 
 	@Id
 	private Integer taskId;
+	@NonNull
 	private String title;
-	private Integer userId;
+	@NonNull
 	private Boolean done = Boolean.FALSE;
-	private String category;
-
-	public Integer getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+	@NonNull
+	private Integer listId;
 
 	public Integer getTaskId() {
 		return taskId;
@@ -37,12 +32,12 @@ public class Task {
 		this.title = title;
 	}
 
-	public String getCategory() {
-		return category;
+	public Integer getListId() {
+		return listId;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setListId(Integer listId) {
+		this.listId = listId;
 	}
 
 	public boolean isDone() {
