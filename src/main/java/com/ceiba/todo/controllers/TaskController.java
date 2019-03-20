@@ -1,8 +1,11 @@
 package com.ceiba.todo.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ceiba.todo.controllers.dto.TaskDTO;
 import com.ceiba.todo.persistence.entity.Task;
 import com.ceiba.todo.services.task.TaskService;
 
@@ -26,16 +30,33 @@ public class TaskController {
 	@Autowired
     private TaskService  taskService;
 	
+	Mapper mapper = new DozerBeanMapper();
+	/**
+	 * 
+	 * @param listId
+	 * @return List<Task> 
+	 */
 	@RequestMapping(value = "/list/{list_id}", method = RequestMethod.GET)
-    public List<Task> tasksByListId(@PathVariable(value = "list_id") Integer listId)
+    public List<TaskDTO> tasksByListId(@PathVariable(value = "list_id") Integer listId)
     {
-        return taskService.tasksByListId(listId);
+		List<Task> listTask = taskService.tasksByListId(listId);
+		List<TaskDTO> listDto = new ArrayList<>(); 
+		mapper.map(listTask, listDto);
+        return listDto;
     }
 	
+	/**
+	 * 
+	 * @param taskId
+	 * @return Optional<Task>
+	 */
 	@RequestMapping(value = "/{task_id}", method = RequestMethod.GET)
     public Optional<Task> taskById(@PathVariable(value = "task_id") Integer taskId)
     {
-        return taskService.taskById(taskId);
+		Optional<Task> listTask = taskService.taskById(taskId);
+		Optional<TaskDTO> listDto = Optional.ofNullable(new TaskDTO()); 
+		mapper.map(listTask, listDto);
+        return listTask;
     }
 	
 	/**
@@ -44,8 +65,10 @@ public class TaskController {
 	 * @return Task
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public Task create(@RequestBody Task task) {
-        return taskService.create(task);
+	public TaskDTO create(@RequestBody TaskDTO taskDto) {
+		Task task =  new Task();
+		mapper.map(taskDto, task);
+	    return mapper.map(taskService.create(task), TaskDTO.class);
     }
 	
 	/**
@@ -54,8 +77,10 @@ public class TaskController {
 	 * @return Task
 	 */
 	@RequestMapping(value = "{task_id}", method = RequestMethod.PUT)
-	public Task update(@RequestBody Task task) {
-        return taskService.update(task);
+	public TaskDTO update(@RequestBody TaskDTO taskDto) {
+		Task task =  new Task();
+		mapper.map(taskDto, task);
+	    return mapper.map(taskService.update(task), TaskDTO.class);
     }
 	
 	/**
@@ -63,7 +88,9 @@ public class TaskController {
 	 * @param task
 	 */
 	@RequestMapping(value = "{task_id}", method = RequestMethod.DELETE)
-	public void delete(@RequestBody Task task) {
-        taskService.delete(task);
+	public void delete(@RequestBody TaskDTO taskDto) {
+		Task task =  new Task();
+		mapper.map(taskDto, task);
+	    taskService.delete(task);
     }
 }

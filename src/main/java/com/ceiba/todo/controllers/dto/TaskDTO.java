@@ -1,17 +1,11 @@
-package com.ceiba.todo.persistence.entity;
+package com.ceiba.todo.controllers.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.lang.NonNull;
+public class TaskDTO {
 
-@Table("tasks")
-public class Task {
-
-	@Id
 	private Integer taskId;
-	@NonNull private String title;
-	@NonNull private Boolean done = Boolean.FALSE;
-	@NonNull private Integer listId;
+	private String title;
+	private Boolean done;
+	private Integer listId;
 
 	public Integer getTaskId() {
 		return taskId;

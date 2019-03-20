@@ -1,15 +1,9 @@
-package com.ceiba.todo.persistence.entity;
+package com.ceiba.todo.controllers.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.lang.NonNull;
-
-@Table("lists")
-public class TodoList {
-	@Id
+public class TodoListDTO {
     private Integer listId;
-	@NonNull private Integer userId;
-	@NonNull private String name;
+	private Integer userId;
+	private String name;
     private String description;
     
 	public Integer getListId() {
