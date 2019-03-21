@@ -89,7 +89,7 @@ public class TodoListController {
 	 * @param todoList
 	 */
 	@RequestMapping(value = "/{list_id}", method = RequestMethod.DELETE)
-	public void delete(@RequestBody Integer todoListId) {
-		todoListService.delete(todoListId);
+	public void delete(@PathVariable(value = "list_id") Integer listId) {
+		todoListService.delete(listId);
     }
 }
