@@ -17,6 +17,9 @@ public class TodoListService{
 	@Autowired
     private TodoListDao todoListDao;
 	
+	@Autowired
+	private TaskService taskService;
+	
 	@Transactional
 	public List<TodoList> listsByUserId(Integer userId) {
 		return todoListDao.listsByUserId(userId);
@@ -39,7 +42,6 @@ public class TodoListService{
 
 	@Transactional
 	public void delete(Integer todoListId) {
-		TaskService taskService = new TaskService(); 
 		List<Task> listTask = taskService.tasksByListId(todoListId);
 		for(Task task:listTask) {
 			taskService.delete(task.getTaskId());
