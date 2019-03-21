@@ -27,8 +27,8 @@ public class TaskService {
 	}
 
 	@Transactional
-	public void delete(Task task) {
-		taskDao.delete(task);
+	public void delete(Integer taskId) {
+		taskDao.deleteById(taskId);
 	}
 
 	@Transactional

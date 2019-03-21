@@ -88,9 +88,7 @@ public class TaskController {
 	 * @param task
 	 */
 	@RequestMapping(value = "{task_id}", method = RequestMethod.DELETE)
-	public void delete(@RequestBody TaskDTO taskDto) {
-		Task task =  new Task();
-		mapper.map(taskDto, task);
-	    taskService.delete(task);
+	public void delete(@RequestBody Integer taskId) {
+		taskService.delete(taskId);
     }
 }

@@ -6,16 +6,17 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.ceiba.todo.persistence.dao.TodoListDao;
+import com.ceiba.todo.persistence.entity.Task;
 import com.ceiba.todo.persistence.entity.TodoList;
+import com.ceiba.todo.services.task.TaskService;
 
 @Service
 public class TodoListService{
 
 	@Autowired
     private TodoListDao todoListDao;
-
+	
 	@Transactional
 	public List<TodoList> listsByUserId(Integer userId) {
 		return todoListDao.listsByUserId(userId);
@@ -37,8 +38,13 @@ public class TodoListService{
 	}
 
 	@Transactional
-	public void delete(TodoList todoList) {
-		todoListDao.delete(todoList);
+	public void delete(Integer todoListId) {
+		TaskService taskService = new TaskService(); 
+		List<Task> listTask = taskService.tasksByListId(todoListId);
+		for(Task task:listTask) {
+			taskService.delete(task.getTaskId());
+		}
+		todoListDao.deleteById(todoListId);
 	}
 
 }

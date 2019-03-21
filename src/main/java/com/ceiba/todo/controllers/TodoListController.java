@@ -89,9 +89,7 @@ public class TodoListController {
 	 * @param todoList
 	 */
 	@RequestMapping(value = "/{list_id}", method = RequestMethod.DELETE)
-	public void delete(@RequestBody TodoListDTO todoListDto) {
-		TodoList todoList = new TodoList(); 
-		mapper.map(todoListDto, todoList);
-	 	todoListService.delete(todoList);
+	public void delete(@RequestBody Integer todoListId) {
+		todoListService.delete(todoListId);
     }
 }
