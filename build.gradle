@@ -23,4 +23,5 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
     testImplementation('junit:junit:4.12')
     compile group: 'net.sf.dozer', name: 'dozer', version: '5.5.1'
+    compile('org.flywaydb:flyway-core')
 }

@@ -6,10 +6,5 @@ spring:
     password: ceiba
     testWhileIdle: true
     validationQuery: SELECT 1
-#  jpa:
-#    show-sql: true
-#    generate-ddl: true
-#    hibernate:
-#      ddl-auto: validate
-#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-#      dialect: org.hibernate.dialect.MySQL5Dialect
+  flyway:
+    baselineOnMigrate: true
