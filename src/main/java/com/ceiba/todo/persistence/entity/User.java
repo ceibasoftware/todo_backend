@@ -6,12 +6,15 @@ import org.springframework.lang.NonNull;
 
 @Table("users")
 public class User {
+
 	@Id
-    private Integer userId;
+	private Integer userId;
+
 	@NonNull
-	private String name;
+	private String username;
+
 	@NonNull
-    private String userName;
+	private String password;
 
 	public Integer getUserId() {
 		return userId;
@@ -21,20 +24,20 @@ public class User {
 		this.userId = userId;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-    
+
 }

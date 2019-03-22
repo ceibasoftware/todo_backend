@@ -14,16 +14,16 @@ import com.ceiba.todo.services.user.UserService;
 public class UserController {
 
 	@Autowired
-    private UserService userService;
-	
+	private UserService userService;
+
 	/**
 	 * 
 	 * @param user
-	 * @return  User
+	 * @return User
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public User create(@RequestBody User user) {
-        return userService.create(user);
-    }
-	
+		return userService.create(user);
+	}
+
 }

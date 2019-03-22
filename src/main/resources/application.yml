@@ -8,3 +8,14 @@ spring:
     validationQuery: SELECT 1
   flyway:
     baselineOnMigrate: true
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+       registration:
+          google:
+            clientId: 1027681282493-n61u3fl9m5s1ikjm2fkv9je9qvhcij0k.apps.googleusercontent.com
+            clientSecret: eLbwaoN9fX-dqL5T-gC32-DW
+    resource:
+      userInfoUri: http://localhost:8081/auth/user/me

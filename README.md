@@ -9,4 +9,4 @@ Connection data:
 - password: ceiba
 
 
-In the <all_backend> folder you have the backend source code developed in java, spring boot and gradle
+In the <todo_backend> folder you have the backend source code developed in java, spring boot and gradle
