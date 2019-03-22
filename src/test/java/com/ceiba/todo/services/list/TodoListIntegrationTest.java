@@ -21,6 +21,8 @@ import com.ceiba.todo.services.user.UserService;
 @SpringBootTest
 public class TodoListIntegrationTest {
 
+	private Integer userId;
+	
 	@Autowired
 	private TodoListService todoListService;
 	
@@ -41,17 +43,17 @@ public class TodoListIntegrationTest {
 			user.setPassword("test");
 			userCreated = UserService.create(user);
 		}	
-		
+		userId = userCreated.getUserId();
 		todoList.setName("Home Work");
 		todoList.setDescription("Task todo at home");
 		todoList.setUserId(userCreated.getUserId());
 		
-		todoListService.create(todoList);
+		todoListService.create(todoList).getListId();
 	}
 	
 	@Test
 	public void updateTest() {
-		List<TodoList> listDto = todoListService.listsByUserId(1);
+		List<TodoList> listDto = todoListService.listsByUserId(userId);
 		listDto.get(0).setName("Home Work Fix");
 		TodoList todoList2Assert = todoListService.update(listDto.get(0));
 		

@@ -11,10 +11,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ceiba.todo.security.CustomUserDetailsService;
+import com.ceiba.todo.security.jwt.JwtConfigurer;
+import com.ceiba.todo.security.jwt.JwtTokenProvider;
 
 @EnableWebSecurity
 @Configuration
@@ -25,6 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private CustomUserDetailsService userDetailsService;
+
+	@Autowired
+	JwtTokenProvider jwtTokenProvider;
 
 	@Bean
 	@Override
@@ -40,8 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/users").permitAll().antMatchers("/").permitAll().anyRequest()
-				.fullyAuthenticated().and().httpBasic().and().csrf().disable();
+		http.httpBasic().disable().csrf().disable().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests().antMatchers("/auth/*")
+				.permitAll().antMatchers("/").permitAll().anyRequest().authenticated().and()
+				.apply(new JwtConfigurer(jwtTokenProvider));
 	}
 
 	@Bean
