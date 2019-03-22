@@ -20,6 +20,8 @@ import com.ceiba.todo.services.security.SecurityService;
 import com.ceiba.todo.services.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.pmw.tinylog.Logger;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -46,12 +48,12 @@ public class AuthController {
 				model.put("token", token);
 				return ResponseEntity.status(HttpStatus.OK).body(new ObjectMapper().writeValueAsString(model));
 			} else {
-				System.out.println("ss");
+				Logger.info("Auth");
 			}
 		} catch (AuthenticationException e) {
 			throw new BadCredentialsException("Invalid username/password supplied");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e.getMessage());
 		}
 		return null;
 	}

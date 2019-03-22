@@ -7,7 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.ceiba.todo.exception.TransactionException;
+import org.pmw.tinylog.Logger;
 
 @Service
 public class SecurityService {
@@ -15,7 +15,7 @@ public class SecurityService {
 	@Autowired
 	private DaoAuthenticationProvider authenticationProvider;
 
-	public boolean authenticate(String username, String password) {
+	public boolean authenticate(String username, String password){
 		try {
 			Authentication newAuthentication = authenticationProvider
 					.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -25,7 +25,7 @@ public class SecurityService {
 				return true;
 			}
 		} catch (Exception e) {
-			throw new TransactionException("Error Auth"); 
+			Logger.error(e.getMessage());
 		}
 		return false;
 	}
