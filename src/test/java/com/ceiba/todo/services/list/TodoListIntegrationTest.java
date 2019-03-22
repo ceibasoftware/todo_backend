@@ -35,9 +35,12 @@ public class TodoListIntegrationTest {
 	
 	@Before
 	public void setUp() {
-		user.setUsername("german.arroyave");
-		user.setPassword("test");
-		User userCreated = UserService.create(user);
+		User userCreated = UserService.findUserByUserName("german.arroyave");
+		if(userCreated == null) {
+			user.setUsername("german.arroyave");
+			user.setPassword("test");
+			userCreated = UserService.create(user);
+		}	
 		
 		todoList.setName("Home Work");
 		todoList.setDescription("Task todo at home");
@@ -53,7 +56,7 @@ public class TodoListIntegrationTest {
 		TodoList todoList2Assert = todoListService.update(listDto.get(0));
 		
 		assertTrue(todoList2Assert.getName().equals("Home Work Fix"));
-		assertEquals(todoList2Assert, listDto.get(0));
+		assertEquals(todoList2Assert.getName(), listDto.get(0).getName());
 		
 	}
 	
