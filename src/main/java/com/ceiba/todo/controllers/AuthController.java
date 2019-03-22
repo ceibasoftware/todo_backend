@@ -3,6 +3,7 @@ package com.ceiba.todo.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.pmw.tinylog.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,6 @@ import com.ceiba.todo.security.jwt.JwtTokenProvider;
 import com.ceiba.todo.services.security.SecurityService;
 import com.ceiba.todo.services.user.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.pmw.tinylog.Logger;
 
 @RestController
 @RequestMapping("/auth")
@@ -48,12 +47,12 @@ public class AuthController {
 				model.put("token", token);
 				return ResponseEntity.status(HttpStatus.OK).body(new ObjectMapper().writeValueAsString(model));
 			} else {
-				Logger.info("Auth");
+				Logger.info("");
 			}
 		} catch (AuthenticationException e) {
 			throw new BadCredentialsException("Invalid username/password supplied");
 		} catch (Exception e) {
-			Logger.error(e.getMessage());
+			Logger.error(e);
 		}
 		return null;
 	}
