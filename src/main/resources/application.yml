@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://0.0.0.0:3306/ceiba
+    url: jdbc:mysql://mysql:3306/ceiba
     driver: com.mysql.Driver
     username: root
     password: ceiba

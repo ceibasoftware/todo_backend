@@ -10,3 +10,9 @@ Connection data:
 
 
 In the <todo_backend> folder you have the backend source code developed in java, spring boot and gradle
+
+To compile de backend write the follow intruction on console:
+
+## Run
+- Run command `gradlew bootJar`
+
