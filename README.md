@@ -14,5 +14,5 @@ In the <todo_backend> folder you have the backend source code developed in java,
 To compile backend write the follow intruction on console:
 
 ## Run
-- Run command `gradlew bootJar`
+- Run command 'gradlew assemble`
 
